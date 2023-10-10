@@ -32,5 +32,11 @@ library(tidyverse)
 # Karo
 
 # Taner
+sssafaafsfd
 
 # Marty
+<<<<<<< HEAD
+=======
+test update
+
+>>>>>>> 6cad92ade59eebdaf7ed10bfb55bfbb2d488ab30
