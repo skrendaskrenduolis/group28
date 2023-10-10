@@ -85,6 +85,6 @@ marty_plot
 Late catching up...
 
 ```{r}
-
+variable <- 1
 ```
 
