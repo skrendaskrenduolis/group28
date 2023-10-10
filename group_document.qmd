@@ -13,6 +13,16 @@ execute:
 
 
 # Karo
+If in trouble, close and refresh.
+
+```{r}
+dir_name <- "./"
+fun_read <- "retire_statistical_significance.pdf"
+fun_url <- "https://www.nature.com/articles/d41586-019-00857-9.pdf"
+download.file(
+    url = fun_url,
+    destfile = fun_read)
+```
 
 
 # Taner
