@@ -72,5 +72,10 @@ some text :)
 This is my edit
 
 ```{r}
-
+x <- tibble(test_data = rnorm(100, mean = 0, sd = 1))
+x
+marty_plot <- x |>
+  ggplot(aes(test_data)) +
+  geom_density()
+marty_plot
 ```
