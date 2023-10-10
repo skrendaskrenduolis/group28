@@ -8,15 +8,16 @@ execute:
   warning: false
 ---
 
-
 # Attila
+
 ## Libraries
+
 ```{r}
 library(tidyverse)
 ```
 
-
 # Karo
+
 If in trouble, close and refresh.
 
 ```{r}
@@ -28,12 +29,14 @@ download.file(
     destfile = fun_read)
 ```
 
-
 # Taner
 
+The final edit
 
 # Marty
+
 This is my edit
+
 ```{r}
 
 ```
