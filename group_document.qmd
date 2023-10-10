@@ -8,20 +8,15 @@ execute:
   warning: false
 ---
 
+
 # Attila
+
 
 # Karo
 
+
 # Taner
 
-Can you guess from which week is the code below?
-
-```{r}
-ggplot(data=cancer_data,
-        mapping=aes(x = g1A01, y = g7F07, group=1)) +
-  geom_line() + 
-  geom_point()
-  labs()
-```
 
 # Marty
+
