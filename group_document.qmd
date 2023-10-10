@@ -8,15 +8,29 @@ execute:
   warning: false
 ---
 
-
 # Attila
 
+Aiiiii AIiiiiii Captaaaaaiiiiinnn!\
+
+## Libraries
+
+```{r}
+library(tidyverse)
+
+```
+
+## Task
+
+```{r}
+#| echo: false
+2 * 2
+
+```
+
+"Yeah! Lets go!"
 
 # Karo
 
-
 # Taner
 
-
 # Marty
-
