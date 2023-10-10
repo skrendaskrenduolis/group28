@@ -7,3 +7,23 @@ editor: visual
 execute: 
   warning: false
 ---
+```{r}
+library("tidyverse")
+library("broom")  # devtools::install_github("tidymodels/broom")
+# library(cowplot)
+```
+
+```{r}
+#read data
+biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
+```
+```{r}
+pca_fit <- biopsy |>
+  select(where(is.numeric)) |> # retain only numeric columns
+  prcomp(scale = TRUE) # do PCA on scaled data
+pca_fit
+```
+
+
+
+
