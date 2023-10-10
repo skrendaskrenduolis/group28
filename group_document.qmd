@@ -16,6 +16,28 @@ execute:
 library(tidyverse)
 ```
 
+## New analysis
+
+Something something.
+```{r}
+xy <- seq(from = -3,
+          to = 3, 
+          by = 0.01)
+expand.grid(x = xy,
+            y = xy) |>
+  ggplot(
+    mapping = aes(
+      x = (1 - x - sin(y^2)),
+      y = (1 + y - cos(x^2)))) +
+  geom_point(alpha = 0.05,
+             shape = 20,
+             size = 0) +
+  theme_void() +
+  coord_polar()
+```
+
+Test_2 asdf asdf
+
 # Karo
 
 If in trouble, close and refresh.
