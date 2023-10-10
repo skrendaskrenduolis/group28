@@ -10,6 +10,10 @@ execute:
 
 
 # Attila
+## Libraries
+```{r}
+library(tidyverse)
+```
 
 
 # Karo
