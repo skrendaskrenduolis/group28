@@ -24,6 +24,19 @@ pca_fit <- biopsy |>
 pca_fit
 ```
 
+```{r}
+pca_fit_plot <- pca_fit |>
+  augment(biopsy) |> # add original dataset back in
+  ggplot(aes(.fittedPC1, .fittedPC2, color = outcome)) + 
+  geom_point(size = 1.5) +
+  scale_color_manual(
+    values = c(malignant = "#D55E00", benign = "#0072B2")) +
+  theme_minimal() +
+  labs(x = "PC1", y = "PC2", )
+
+pca_fit_plot
+```
+
 
 
 
