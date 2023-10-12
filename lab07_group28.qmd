@@ -10,7 +10,7 @@ execute:
 
 # Background
 
-Up to July 15, 1992, Dr. William H. Wolberg in the University of Wisconsin Hospitals assesed breast tumor biopsies, and scored nine attributes from 1 to 10, as well as the outcome.
+Up to July 15, 1992, Dr. William H. Wolberg in the University of Wisconsin Hospitals assessed breast tumor biopsies, and scored nine attributes from 1 to 10, as well as the outcome. The data set can be found in the link below where the data is loaded. [Further explanation with references.](https://stat.ethz.ch/R-manual/R-devel/library/MASS/html/biopsy.html)
 
 # Load Libraries
 
@@ -21,9 +21,21 @@ library("broom")  # devtools::install_github("tidymodels/broom")
 library("patchwork")
 ```
 
+# Aim
+
+The aim of this report is to follow the [PCA in tidyverse guide](https://clauswilke.com/blog/2020/09/07/pca-tidyverse-style/) while utilizing the integrated git functionality in R studio.
+
+# Download Data
+
+```{r}
+#read data
+biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
+```
+
 # Data description
 
 ```{r}
+# histograms for data description
 biopsy
 plt_clump <- biopsy |>
   ggplot(aes(x = clump_thickness)) +
@@ -84,15 +96,8 @@ plt_clump + plt_uniform_cell_shape + plt_uniform_cell_size + plt_marg_adhesion +
 plt_epithelial_cell_size + plt_bare_nuclei + plt_bland_chromatin + plt_normal_nucleoli +
 plt_mitoses + plot_layout(ncol = 3, nrow = 3)
 ```
+
 We can get an overview of our data by looking at the distribution of the attributes and the scores assigned to them. To start, there is no clear distribution, such as Gaussian, that can be immediately seen in the data. The distribution of assigned scores for clump thickness appears to be the most varied and uniformly distributed, with the highest count of around 125 belonging to the score of 1, followed by 5. Bland chromatin is the closest in distribution, with the first three scores of 1, 2 and 3 having similar counts, while the rest are lower. For the rest of the attributes, the majority of the counts appear to be of the score 1, with the exception of epithelial cell size where the majority of counts are of the score 2.
-
-
-# Download Data
-
-```{r}
-#read data
-biopsy <- read_csv("https://wilkelab.org/classes/SDS348/data_sets/biopsy.csv")
-```
 
 # PCA
 
@@ -103,7 +108,7 @@ pca_fit <- biopsy |>
 pca_fit
 ```
 
-# Plot
+# Plots and analysis
 
 ```{r}
 pca_fit_plot <- pca_fit |>
@@ -117,6 +122,8 @@ pca_fit_plot <- pca_fit |>
 
 pca_fit_plot
 ```
+
+The first plot shows the first and second PC data points, stratified by the outcome group. We can clearly see the the clustering of beningn outcomes. The malignant outcomes are more spread out, but still separate from the bening for the most part. Attributes that influence PC1 are likely to be the reason for this separation of clusters.
 
 ```{r}
 # extract rotation matrix
@@ -146,6 +153,8 @@ pca_fit %>%
 
 ```
 
+Next we will look at the loading plot made from the rotation matrix, to see the influence each attribute has on the first two PCs. We can see all except one attribute have varying influence on PC1, and are for the most part positively correlated (the arrows point in the same directions). The outlier here appears to be mitoses. This attribute has a high influence on PC2 rather than PC1, and is either slighly correlated (positively or negatively), or not correlated at all to the other attributes.
+
 ```{r}
 pca_fit %>%
   tidy(matrix = "eigenvalues")
@@ -160,5 +169,8 @@ pca_fit %>%
   scale_y_continuous(
     labels = scales::percent_format(),
     expand = expansion(mult = c(0, 0.01))
-  )
+  ) +
+  theme_minimal()
 ```
+
+Lastly, we want to see how much of the variance in our data is explained by each PC. The plot above shows this, and we can see that \~65% of the variance is explained by PC1. This fits the first plot, that shows how the data points were distributed along the first two PCs and the clustering that occurred.
