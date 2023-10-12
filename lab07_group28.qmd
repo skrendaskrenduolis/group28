@@ -8,13 +8,84 @@ execute:
   warning: false
 ---
 
+# Background
+
+Up to July 15, 1992, Dr. William H. Wolberg in the University of Wisconsin Hospitals assesed breast tumor biopsies, and scored nine attributes from 1 to 10, as well as the outcome.
+
 # Load Libraries
 
 ```{r}
 library("tidyverse")
 library("broom")  # devtools::install_github("tidymodels/broom")
 # library(cowplot)
+library("patchwork")
 ```
+
+# Data description
+
+```{r}
+biopsy
+plt_clump <- biopsy |>
+  ggplot(aes(x = clump_thickness)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Clump thickness")
+
+plt_uniform_cell_size <- biopsy |>
+  ggplot(aes(x = uniform_cell_size)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Uniform cell size")
+
+plt_uniform_cell_shape <- biopsy |>
+  ggplot(aes(x = uniform_cell_shape)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Uniform cell shape")
+
+plt_marg_adhesion <- biopsy |>
+  ggplot(aes(x = marg_adhesion)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Marg. adhesion")
+
+
+plt_epithelial_cell_size <- biopsy |>
+  ggplot(aes(x = epithelial_cell_size)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Epithelial cell size")
+ 
+plt_bare_nuclei <- biopsy |>
+  ggplot(aes(x = bare_nuclei)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Bare nuclei")
+
+plt_bland_chromatin <- biopsy |>
+  ggplot(aes(x = bland_chromatin)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Bland chromatin")
+
+plt_normal_nucleoli <- biopsy |>
+  ggplot(aes(x = normal_nucleoli)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Normal nucleoli")
+
+plt_mitoses <- biopsy |>
+  ggplot(aes(x = mitoses)) +
+  geom_histogram() +
+  theme_minimal() + 
+  labs(x = "Mitoses")
+
+plt_clump + plt_uniform_cell_shape + plt_uniform_cell_size + plt_marg_adhesion +
+plt_epithelial_cell_size + plt_bare_nuclei + plt_bland_chromatin + plt_normal_nucleoli +
+plt_mitoses + plot_layout(ncol = 3, nrow = 3)
+```
+We can get an overview of our data by looking at the distribution of the attributes and the scores assigned to them. To start, there is no clear distribution, such as Gaussian, that can be immediately seen in the data. The distribution of assigned scores for clump thickness appears to be the most varied and uniformly distributed, with the highest count of around 125 belonging to the score of 1, followed by 5. Bland chromatin is the closest in distribution, with the first three scores of 1, 2 and 3 having similar counts, while the rest are lower. For the rest of the attributes, the majority of the counts appear to be of the score 1, with the exception of epithelial cell size where the majority of counts are of the score 2.
+
 
 # Download Data
 
