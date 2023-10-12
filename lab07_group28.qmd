@@ -16,8 +16,7 @@ Up to July 15, 1992, Dr. William H. Wolberg in the University of Wisconsin Hospi
 
 ```{r}
 library("tidyverse")
-library("broom")  # devtools::install_github("tidymodels/broom")
-# library(cowplot)
+library("broom")  
 library("patchwork")
 ```
 
@@ -123,7 +122,7 @@ pca_fit_plot <- pca_fit |>
 pca_fit_plot
 ```
 
-The first plot shows the first and second PC data points, stratified by the outcome group. We can clearly see the the clustering of beningn outcomes. The malignant outcomes are more spread out, but still separate from the bening for the most part. Attributes that influence PC1 are likely to be the reason for this separation of clusters.
+The first plot shows the first and second PC data points, stratified by the outcome group. We can clearly see the the clustering of benign outcomes. The malignant outcomes are more spread out, but still separate from the bening for the most part. Attributes that influence PC1 are likely to be the reason for this separation of clusters.
 
 ```{r}
 # extract rotation matrix
@@ -149,7 +148,8 @@ pca_fit %>%
     color = "#904C2F"
   ) +
   xlim(-1.25, .5) + ylim(-.5, 1) +
-  coord_fixed()# fix aspect ratio to 1:1
+  coord_fixed() +
+  theme_minimal()
 
 ```
 
